@@ -1,0 +1,124 @@
+* {
+  padding: 0;
+  margin: 0;
+  font-family: 'Azeret Mono', monospace;
+}
+
+body {
+  background-color: rgb(39, 39, 39);
+}
+
+.container {
+  position: fixed;
+  transform: translate(-50%, -50%);
+  width: 7em;
+  top: 50%;
+  left: 50%;
+  box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.409);
+}
+
+.buttons {
+  width: inherit;
+  background-color: black;
+  display: grid;
+  gap: 0.05rem;
+  grid-template-areas: 
+
+    "clear      clear     undo      m"
+    "seven      eight     nine      d"
+    "four       five      six       s"
+    "one        two       three     a"
+    "zer0       zer0      zer0      equals";
+}
+
+.screen {
+  grid-area: operation;
+  text-align: right;
+  font-size: 1em;
+  color: white;
+  background-color: black;
+  margin: 0;
+  padding: 0.2em;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-weight: 100;
+}
+.clear {
+  grid-area: clear;
+}
+.undo {
+  grid-area: undo;
+}
+.undo div {
+  font-stretch: ultra-condensed;
+}
+.multiply {
+  grid-area: m;
+  background-color: #ffa135;
+}
+.seven {
+  grid-area: seven;
+}
+.eight {
+  grid-area: eight;
+}
+.nine {
+  grid-area: nine;
+}
+.divide {
+  grid-area: d;
+  background-color: #ffa135;
+}
+.four {
+  grid-area: four;
+}
+.five {
+  grid-area: five;
+}
+.six {
+  grid-area: six;
+}
+.subtract {
+  grid-area: s;
+  background-color: #ffa135;
+}
+.one {
+  grid-area: one;
+}
+.two {
+  grid-area: two;
+}
+.three {
+  grid-area: three;
+}
+.add {
+  grid-area: a;
+  background-color: #ffa135;
+}
+.zero {
+  grid-area: zer0;
+}
+.equals {
+  grid-area: equals;
+  background-color: #ffa135;
+}
+
+button {
+  height: 2em;
+  border: none;
+  background-color: #e1e1e1;
+}
+
+button div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+button:hover > div {
+  background-color:rgba(255, 255, 255, 0.289);
+}
+
+button:active > div {
+  background-color:rgba(70, 70, 70, 0.437);
+}
