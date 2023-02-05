@@ -1,4 +1,18 @@
 # Calculator
-Simple JS calculator: Can make simple operations on two inputs.
-Hitting "=" button repeats operation over last result.
-Not entering second operand and hitting "=" button results in NaN.
+Simple JS calculator: <br>
+<ul>
+  <li>Can make simple operations on two inputs and display it on "screen". <br>
+  <li>Hitting "=" button repeats operation over last result.<br>
+</ul>
+
+Issues:
+<ul>
+  <li>Not entering second operand and hitting "=" button will result in NaN.<br>
+  <li>With 130+ lines of code, probably could use some optimisation.<br>
+</ul>
+
+Reason for existance:
+<ul>
+  <li>Practicing JS algorithm and DOM manipulation :)
+</ul>
+
