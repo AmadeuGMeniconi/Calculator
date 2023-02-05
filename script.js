@@ -1,23 +1,22 @@
 const operation = {
+  screen: document.querySelector(".screen"),
   bufferPointer: 'firstOperand',
-  result: '',
   firstOperand: '0',
   secondOperand: '',
   operator: '',
-
+  result: '',
   clearOperation() {
     this.bufferPointer = 'firstOperand';
-    this.result = '';
     this.firstOperand = '0';
     this.secondOperand = '';
     this.operator = '';
+    this.result = '';
   },
   render() {
-    let screen = document.querySelector(".screen")
     if (this.bufferPointer === 'result') {
-      screen.innerHTML = `${this.result}`
+      this.screen.innerHTML = `${this.result}`
     } else {
-      screen.innerHTML = `${this.firstOperand} ${this.operator} ${this.secondOperand}`
+      this.screen.innerHTML = `${this.firstOperand} ${this.operator} ${this.secondOperand}`
     }
   }
 };
@@ -78,39 +77,44 @@ function handleSymbol(value) {
       }
       break;
     case '=':
-      switch (operation.operator) {
-        case '×':
-          if (operation.bufferPointer === 'result') {
-            operation.result *= Number.parseInt(operation.secondOperand);
-          } else {
-            operation.result = Number.parseInt(operation.firstOperand) * Number.parseInt(operation.secondOperand);
-          }
-          break;
-        case '/':
-          if (operation.bufferPointer === 'result') {
-            operation.result /= Number.parseInt(operation.secondOperand);
-          } else {
-            operation.result = Number.parseInt(operation.firstOperand) / Number.parseInt(operation.secondOperand);
-          }
-          break;
-        case '-':
-          if (operation.bufferPointer === 'result') {
-            operation.result -= Number.parseInt(operation.secondOperand);
-          } else {
-            operation.result = Number.parseInt(operation.firstOperand) - Number.parseInt(operation.secondOperand);
-          }
-          break;
-        case '+':
-          if (operation.bufferPointer === 'result') {
-            operation.result += Number.parseInt(operation.secondOperand);
-          } else {
-            operation.result = Number.parseInt(operation.firstOperand) + Number.parseInt(operation.secondOperand);
-          }
-          break;
+      if (operation.bufferPointer !== 'firstOperand') {
+        switch (operation.operator) {
+          case '×':
+            if (operation.bufferPointer === 'result') {
+              operation.result *= Number.parseInt(operation.secondOperand);
+            } else {
+              operation.result = Number.parseInt(operation.firstOperand) * Number.parseInt(operation.secondOperand);
+            }
+            break;
+          case '/':
+            if (operation.bufferPointer === 'result') {
+              operation.result /= Number.parseInt(operation.secondOperand);
+            } else {
+              operation.result = Number.parseInt(operation.firstOperand) / Number.parseInt(operation.secondOperand);
+            }
+            break;
+          case '-':
+            if (operation.bufferPointer === 'result') {
+              operation.result -= Number.parseInt(operation.secondOperand);
+            } else {
+              operation.result = Number.parseInt(operation.firstOperand) - Number.parseInt(operation.secondOperand);
+            }
+            break;
+          case '+':
+            if (operation.bufferPointer === 'result') {
+              operation.result += Number.parseInt(operation.secondOperand);
+            } else {
+              operation.result = Number.parseInt(operation.firstOperand) + Number.parseInt(operation.secondOperand);
+            }
+            break;
+        }
+        operation.bufferPointer = 'result';
+        operation.render();
+        break;
+      } else {
+        //Do nothing
       }
-      operation.bufferPointer = 'result';
-      operation.render();
-      break;
+
   }
 }
 
