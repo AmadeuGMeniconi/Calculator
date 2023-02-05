@@ -8,6 +8,7 @@ Simple JS calculator: <br>
 Issues:
 <ul>
   <li>Not entering second operand and hitting "=" button will result in NaN.<br>
+  <li>No limit to how many numbers can fit onto "screen". Inputs and Outputs bleed out of "screen".<br>
   <li>With 130+ lines of code, probably could use some optimisation.<br>
 </ul>
 
