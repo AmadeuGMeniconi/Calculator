@@ -4,17 +4,17 @@ const operation = {
   firstOperand: '0',
   secondOperand: '',
   operator: '',
-  result: '',
+  result: 0,
   clearOperation() {
     this.bufferPointer = 'firstOperand';
     this.firstOperand = '0';
     this.secondOperand = '';
     this.operator = '';
-    this.result = '';
+    this.result = 0;
   },
   render() {
     if (this.bufferPointer === 'result') {
-      this.screen.innerHTML = `${this.result}`
+      this.screen.innerHTML = this.result
     } else {
       this.screen.innerHTML = `${this.firstOperand} ${this.operator} ${this.secondOperand}`
     }
@@ -45,14 +45,14 @@ function handleSymbol(value) {
             operation.firstOperand = '0'
           }
           break;
-        case 'operator':
-          if (operation.operator !== '') {
-            operation.operator = '';
-            operation.bufferPointer = 'firstOperand';
-          }
-          break;
+        // case 'operator':
+        //   if (operation.operator !== '') {
+        //     operation.operator = '';
+        //     operation.bufferPointer = 'firstOperand';
+        //   }
+        //   break;
         case 'secondOperand':
-          if (operation.secondOperand.length > 0) {
+          if (operation.secondOperand.length > 1) {
             operation.secondOperand = operation.secondOperand.slice(0, -1)
           } else {
             operation.secondOperand = '';
@@ -68,11 +68,12 @@ function handleSymbol(value) {
       }
       break;
     case '×':
-    case '/':
-    case '-':
+    case '÷':
+    case '−':
     case '+':
       if (operation.bufferPointer === 'firstOperand') {
         operation.operator = value;
+        operation.secondOperand = '0';
         operation.bufferPointer = 'secondOperand';
       }
       break;
@@ -86,14 +87,14 @@ function handleSymbol(value) {
               operation.result = Number.parseInt(operation.firstOperand) * Number.parseInt(operation.secondOperand);
             }
             break;
-          case '/':
+          case '÷':
             if (operation.bufferPointer === 'result') {
-              operation.result /= Number.parseInt(operation.secondOperand);
+              operation.result = (operation.result / Number.parseInt(operation.secondOperand)).toFixed(9);
             } else {
-              operation.result = Number.parseInt(operation.firstOperand) / Number.parseInt(operation.secondOperand);
+              operation.result = (Number.parseInt(operation.firstOperand) / Number.parseInt(operation.secondOperand)).toFixed(9);
             }
             break;
-          case '-':
+          case '−':
             if (operation.bufferPointer === 'result') {
               operation.result -= Number.parseInt(operation.secondOperand);
             } else {
